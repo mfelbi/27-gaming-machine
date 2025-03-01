@@ -1,0 +1,332 @@
+/* Reset body and set background */
+body {
+  font-family: 'Orbitron', sans-serif;  /* Futuristic gaming font */
+  background: #1c1c1c; /* Dark background */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Glowing text animation */
+@keyframes glowing-text {
+  0% {
+    text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+  }
+  50% {
+    text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99, 0 0 60px #00ff99;
+  }
+  100% {
+    text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+  }
+}
+
+/* Styling for the title */
+h1 {
+  font-size: 4rem;
+  margin-bottom: 30px;
+  color: #fff;
+  text-align: center;
+  animation: glowing-text 1.5s ease-in-out infinite alternate;
+}
+
+/* Slot box glowing effect */
+@keyframes glowing-box {
+  0% {
+    box-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50, 0 0 30px #4CAF50;
+  }
+  50% {
+    box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
+  }
+  100% {
+    box-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50, 0 0 30px #4CAF50;
+  }
+}
+
+/* Slot box container */
+.slot-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 4px solid #4CAF50;
+  background: linear-gradient(135deg, #a8e063, #56ab2f);
+  border-radius: 15px;
+  width: 350px;
+  height: 100px;
+  margin: 20px auto;
+  box-sizing: border-box;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+  animation: glowing-box 1.5s ease-in-out infinite;
+}
+
+/* Slot item animation */
+@keyframes spin-items {
+  0% { transform: rotateX(0deg); }
+  50% { transform: rotateX(1800deg); }
+  100% { transform: rotateX(3600deg); }
+}
+
+.slot-items {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.slot-item {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin: 0 5px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.slot-item.spinning {
+  animation: spin-items 1.5s ease-in-out;
+}
+
+/* Button styling */
+button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-top: 20px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Glow effects for the win message */
+.win-message {
+  color: #4CAF50;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+  animation: glowing-text 2s ease-in-out infinite alternate;
+}
+
+/* Animation for the slot box background color */
+@keyframes rainbow {
+  0% { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+  25% { background: linear-gradient(135deg, #ffbc00, #ff9a00); }
+  50% { background: linear-gradient(135deg, #00c6ff, #0072ff); }
+  75% { background: linear-gradient(135deg, #ff00cc, #333399); }
+  100% { background: linear-gradient(135deg, #ff416c, #ff4b2b); }
+}
+
+.slot-box {
+  animation: rainbow 5s linear infinite;
+}
+
+/* Input username form styling */
+.input-username-container {
+  font-family: 'Orbitron', sans-serif;  /* Retro gaming font */
+  background: #1c1c1c; /* Dark background */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  flex-direction: column; /* Menambahkan arah vertikal untuk elemen */
+  text-align: center;
+}
+
+.game-title h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  animation: glow 1.5s ease-in-out infinite alternate;
+  color: white; /* Warna putih untuk teks */
+}
+
+/* Glowing text animation */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+  }
+  50% {
+    text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99, 0 0 60px #00ff99;
+  }
+  100% {
+    text-shadow: 0 0 10px #ff3366, 0 0 20px #ff3366, 0 0 30px #ff3366;
+  }
+}
+
+.username-form {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px; /* Membatasi lebar maksimal agar responsif */
+  margin-top: 20px;
+}
+
+.username-label {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  display: block;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: white; /* Agar label juga terlihat jelas */
+}
+
+.username-input {
+  padding: 15px;
+  font-size: 1.2rem;
+  border: 2px solid #ff3366;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 100%; /* Input mengisi lebar form */
+  max-width: 300px; /* Membatasi lebar input */
+  background: transparent;
+  color: white;
+  text-align: center;
+  outline: none;
+  box-shadow: 0px 4px 10px rgba(255, 51, 102, 0.8);
+}
+
+.username-input:focus {
+  border-color: #00ff99;
+  box-shadow: 0 0 15px #00ff99;
+}
+
+.start-game-btn {
+  padding: 15px 30px;
+  font-size: 1.2rem;
+  background-color: #ff3366;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+}
+
+.start-game-btn:hover {
+  background-color: #00ff99;
+  transform: scale(1.1);
+}
+
+.start-game-btn:active {
+  transform: scale(1);
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 600px) {
+  .game-title h1 {
+    font-size: 2rem; /* Menyesuaikan ukuran font pada layar kecil */
+    margin-bottom: 20px;
+  }
+
+  .username-form {
+    padding: 20px; /* Mengurangi padding agar lebih responsif */
+  }
+
+  .username-input {
+    width: 80%; /* Input lebih lebar pada layar kecil */
+  }
+
+  .start-game-btn {
+    width: 100%; /* Tombol mengisi lebar layar pada perangkat kecil */
+  }
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 600px) {
+  body {
+    font-size: 1rem; /* Ukuran font yang lebih kecil pada layar kecil */
+  }
+
+  h1 {
+    font-size: 1rem; /* Ukuran font h1 yang lebih kecil */
+    margin-bottom: 20px;
+  }
+
+  .slot-box {
+    width: 90%; /* Membuat slot box lebih lebar */
+    height: auto;
+    padding: 10px;
+    margin: 10px auto;
+  }
+
+  .slot-item {
+    font-size: 1.2rem; /* Ukuran font item lebih kecil */
+    width: 50px;
+    height: 50px;
+  }
+
+  button {
+    font-size: 0.9rem; /* Ukuran font tombol lebih kecil */
+    padding: 8px 15px;
+  }
+
+  .input-username-container {
+    padding: 10px; /* Mengurangi padding agar lebih pas di layar kecil */
+  }
+
+  .username-input {
+    width: 80%; /* Mengurangi lebar input agar lebih responsif */
+    padding: 12px;
+  }
+
+  .start-game-btn {
+    width: 100%; /* Tombol mengisi lebar layar */
+    padding: 12px 0;
+  }
+}
+
+/* Responsif untuk tablet atau layar dengan ukuran sedang */
+@media (max-width: 900px) {
+  h1 {
+    font-size: 2rem; /* Ukuran font h1 yang sedikit lebih kecil */
+  }
+
+  .slot-box {
+    width: 80%; /* Slot box sedikit lebih lebar */
+    height: auto;
+  }
+
+  .slot-item {
+    font-size: 1.4rem; /* Ukuran font slot item sedikit lebih kecil */
+    width: 55px;
+    height: 55px;
+  }
+
+  button {
+    font-size: 1rem;
+  }
+
+  .input-username-container {
+    padding: 20px;
+  }
+
+  .username-input {
+    width: 90%;
+  }
+}
