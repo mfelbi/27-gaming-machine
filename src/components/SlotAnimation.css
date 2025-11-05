@@ -322,39 +322,6 @@
   overflow: hidden;
 }
 
-/* LED lights decoration */
-.slot-item::after {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: 50%;
-  width: clamp(4px, 1vw, 6px);
-  height: clamp(4px, 1vw, 6px);
-  border-radius: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-}
-
-/* LED light effect on slot items */
-.slot-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg,
-    #ffd700 0%,
-    #8b7355 20%,
-    #8b7355 80%,
-    #ffd700 100%
-  );
-  z-index: 4;
-  border-radius: 1.5px;
-  box-shadow:
-    1px 0 2px rgba(0,0,0,0.3),
-    -1px 0 2px rgba(0,0,0,0.3);
-}
-
 
 /* Animasi spin untuk setiap reel */
 @keyframes spinReel {
