@@ -1,5 +1,31 @@
 /* Slot Machine Animations */
 
+/* Ensure Bootstrap compatibility */
+.d-flex {
+  display: flex !important;
+}
+
+.justify-content-center {
+  justify-content: center !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.mt-4 {
+  margin-top: 1.5rem !important;
+}
+
+.mx-2 {
+  margin-left: 0.5rem !important;
+  margin-right: 0.5rem !important;
+}
+
 /* Container untuk slot machine */
 .slot-box {
   background: linear-gradient(145deg, #2c3e50, #34495e);
