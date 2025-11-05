@@ -286,11 +286,15 @@
 .slot-items {
   position: relative;
   z-index: 2;
-  gap: clamp(8px, 2vw, 15px);
+  gap: 15px;
   width: 100%;
   justify-content: center;
   flex-wrap: nowrap;
-  padding: clamp(10px, 2vw, 20px) 0;
+  padding: 30px 25px;
+  margin: 0 auto;
+  max-width: fit-content;
+  background: rgba(26, 26, 46, 0.3);
+  border-radius: 15px;
 }
 
 /* Top and bottom decorative bars */
@@ -326,26 +330,28 @@
 
 /* Individual slot item */
 .slot-item {
-  width: clamp(50px, 8vw, 80px);
-  height: clamp(65px, 10vw, 100px);
-  min-width: 50px;
-  min-height: 65px;
-  max-width: 80px;
-  max-height: 100px;
+  width: 85px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  background: linear-gradient(145deg, #ffffff, #f0f0f0);
-  border: clamp(1px, 0.3vw, 2px) solid #ffd700;
-  border-radius: clamp(10px, 2vw, 15px);
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(145deg, #ffffff, #f8f9fa);
+  border: 3px solid #ffd700;
+  border-radius: 12px;
   box-shadow:
-    0 8px 16px rgba(0,0,0,0.3),
-    inset 0 2px 4px rgba(255,255,255,0.5);
+    0 4px 8px rgba(0,0,0,0.2),
+    0 2px 4px rgba(0,0,0,0.1),
+    inset 0 2px 4px rgba(255,255,255,0.9),
+    inset 0 -2px 4px rgba(0,0,0,0.1);
   position: relative;
   transition: all 0.3s ease;
   flex: 0 0 auto;
   overflow: hidden;
+  margin: 0;
+  padding: 10px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
 
 
@@ -513,7 +519,7 @@
 /* Extra Small Devices (phones in portrait) */
 @media (max-width: 480px) {
   .slot-box {
-    padding: clamp(10px, 3vw, 20px);
+    padding: 15px;
     margin: 0 10px;
     flex-direction: column;
     gap: 15px;
@@ -529,18 +535,18 @@
   }
 
   .slot-lever-arm {
-    width: clamp(50px, 12vw, 60px);
-    height: clamp(6px, 1.5vw, 10px);
+    width: 50px;
+    height: 8px;
   }
 
   .slot-lever-base {
-    width: clamp(25px, 6vw, 35px);
-    height: clamp(25px, 6vw, 35px);
+    width: 30px;
+    height: 30px;
   }
 
   .slot-lever-handle {
-    width: clamp(12px, 3vw, 18px);
-    height: clamp(12px, 3vw, 18px);
+    width: 14px;
+    height: 14px;
     right: -6px;
   }
 
@@ -549,71 +555,92 @@
   }
 
   .slot-items {
-    gap: clamp(5px, 1.5vw, 10px);
+    gap: 8px;
+    padding: 20px 15px;
   }
 
   .slot-item {
-    width: clamp(40px, 12vw, 60px);
-    height: clamp(50px, 15vw, 80px);
-    min-width: 40px;
-    min-height: 50px;
-    max-width: 60px;
-    max-height: 80px;
-    font-size: clamp(1.2rem, 3.5vw, 2rem);
-    border-radius: clamp(8px, 2vw, 12px);
+    width: 50px;
+    height: 65px;
+    min-width: 50px;
+    min-height: 65px;
+    max-width: 50px;
+    max-height: 65px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 6px;
+    border-width: 2px;
   }
 }
 
 /* Small Devices (landscape phones, small tablets) */
 @media (min-width: 481px) and (max-width: 768px) {
   .slot-box {
-    padding: clamp(15px, 3.5vw, 25px);
+    padding: 20px;
     margin: 0 15px;
   }
 
   .slot-machine-container {
-    gap: clamp(10px, 2vw, 20px);
+    gap: 20px;
   }
 
   .slot-lever-arm {
-    width: clamp(55px, 10vw, 70px);
-    height: clamp(7px, 1.5vw, 11px);
+    width: 65px;
+    height: 10px;
   }
 
   .slot-lever-base {
-    width: clamp(28px, 5vw, 40px);
-    height: clamp(28px, 5vw, 40px);
+    width: 35px;
+    height: 35px;
   }
 
   .slot-lever-handle {
-    width: clamp(14px, 3vw, 20px);
-    height: clamp(14px, 3vw, 20px);
+    width: 16px;
+    height: 16px;
     right: -7px;
   }
 
   .slot-items {
-    gap: clamp(8px, 2vw, 12px);
+    gap: 12px;
+    padding: 25px 20px;
   }
 
   .slot-item {
-    width: clamp(45px, 9vw, 70px);
-    height: clamp(55px, 11vw, 85px);
-    min-width: 45px;
-    min-height: 55px;
+    width: 70px;
+    height: 90px;
+    min-width: 70px;
+    min-height: 90px;
     max-width: 70px;
-    max-height: 85px;
-    font-size: clamp(1.4rem, 3.8vw, 2.5rem);
+    max-height: 90px;
+    font-size: 2.2rem;
+    padding: 8px;
   }
 }
 
 /* Medium Devices (tablets) */
 @media (min-width: 769px) and (max-width: 1024px) {
   .slot-box {
-    padding: clamp(20px, 4vw, 30px);
+    padding: 25px;
+  }
+
+  .slot-machine-container {
+    gap: 25px;
   }
 
   .slot-items {
-    gap: clamp(10px, 2.5vw, 15px);
+    gap: 15px;
+    padding: 30px 25px;
+  }
+
+  .slot-item {
+    width: 80px;
+    height: 100px;
+    min-width: 80px;
+    min-height: 100px;
+    max-width: 80px;
+    max-height: 100px;
+    font-size: 2.8rem;
+    padding: 10px;
   }
 }
 
