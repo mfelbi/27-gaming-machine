@@ -32,11 +32,12 @@
   border-radius: 20px;
   padding: clamp(15px, 4vw, 30px);
   box-shadow:
-    0 20px 40px rgba(0,0,0,0.4),
+    0 15px 30px rgba(0,0,0,0.3),
     inset 0 2px 5px rgba(255,255,255,0.1);
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   width: 100%;
+  min-width: fit-content;
   max-width: 900px;
   margin: 0 auto;
   display: flex;
@@ -118,206 +119,114 @@
 .slot-reels-area {
   flex: 1;
   position: relative;
+  min-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
 }
 
-/* Divider rods between slot items */
+/* Simplified divider rod between slot items */
 .slot-reels-area::before {
   content: '';
   position: absolute;
   top: 50%;
-  left: 0%;
-  right: 0%;
-  height: 4px;
+  left: 5%;
+  right: 5%;
+  height: 2px;
   background: linear-gradient(90deg,
     transparent 0%,
-    #ffd700 5%,
-    #ffd700 10%,
-    #8b7355 20%,
-    #8b7355 80%,
-    #ffd700 90%,
-    #ffd700 95%,
+    #ffd700 30%,
+    #ffd700 70%,
     transparent 100%
   );
   transform: translateY(-50%);
   z-index: 3;
-  border-radius: 2px;
-  box-shadow:
-    0 2px 4px rgba(0,0,0,0.5),
-    inset 0 1px 2px rgba(255,255,255,0.3);
+  border-radius: 1px;
+  box-shadow: 0 1px 3px rgba(255,215,0,0.4);
 }
 
-/* Additional decorative elements */
+/* Simplified decorative border */
 .slot-reels-area::after {
   content: '';
   position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  border: 3px solid #ffd700;
-  border-radius: 15px;
-  background: linear-gradient(145deg, #1a1a2e, #16213e);
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 2px solid rgba(255,215,0,0.3);
+  border-radius: 12px;
+  background: linear-gradient(145deg, rgba(26,26,46,0.1), rgba(22,33,62,0.1));
   z-index: 1;
 }
 
-/* Individual divider rods for each slot */
-.slot-item::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg,
-    #ffd700 0%,
-    #8b7355 20%,
-    #8b7355 80%,
-    #ffd700 100%
-  );
-  z-index: 4;
-  border-radius: 1.5px;
-  box-shadow:
-    1px 0 2px rgba(0,0,0,0.3),
-    -1px 0 2px rgba(0,0,0,0.3);
-}
-
+/* Simplified LED indicators for each slot */
 .slot-item::after {
   content: '';
   position: absolute;
-  top: -2px;
+  top: -3px;
   left: 50%;
-  right: 50%;
-  width: 6px;
-  height: 6px;
-  background: radial-gradient(circle, #ffd700, #8b7355);
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle, #ffd700, #ffed4e);
   border-radius: 50%;
   transform: translateX(-50%);
   z-index: 5;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  box-shadow: 0 2px 4px rgba(255,215,0,0.5);
+  opacity: 0.8;
 }
 
-/* Position divider rods */
-.slot-item:nth-child(1)::before { display: none; }
-.slot-item:nth-child(2)::before { left: -2px; }
-.slot-item:nth-child(3)::before { left: -2px; }
-.slot-item:nth-child(4)::before { left: -2px; }
-.slot-item:nth-child(5)::before { left: -2px; right: auto; }
-
-/* LED color variations for each slot */
-.slot-item:nth-child(1)::after {
-  background: radial-gradient(circle, #ff6b6b, #ee5a52);
-  box-shadow: 0 0 8px rgba(255,107,107,0.8);
-  animation-delay: 0s;
-}
-
-.slot-item:nth-child(2)::after {
-  background: radial-gradient(circle, #4ecdc4, #44a3aa);
-  box-shadow: 0 0 8px rgba(78,205,196,0.8);
-  animation-delay: 0.4s;
-}
-
-.slot-item:nth-child(3)::after {
-  background: radial-gradient(circle, #ffd700, #ffed4e);
-  box-shadow: 0 0 8px rgba(255,215,0,0.8);
-  animation-delay: 0.8s;
-}
-
-.slot-item:nth-child(4)::after {
-  background: radial-gradient(circle, #ff6b6b, #ee5a52);
-  box-shadow: 0 0 8px rgba(255,107,107,0.8);
-  animation-delay: 1.2s;
-}
-
-.slot-item:nth-child(5)::after {
-  background: radial-gradient(circle, #4ecdc4, #44a3aa);
-  box-shadow: 0 0 8px rgba(78,205,196,0.8);
-  animation-delay: 1.6s;
-}
-
-/* Enhanced LED animation for different colors */
-@keyframes ledPulseRed {
+/* Simple LED pulse animation */
+@keyframes simpleLedPulse {
   0%, 100% {
-    background: radial-gradient(circle, #ff6b6b, #ee5a52);
-    box-shadow: 0 0 8px rgba(255,107,107,0.8);
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1);
   }
   50% {
-    background: radial-gradient(circle, #ff4757, #ff3838);
-    box-shadow: 0 0 12px rgba(255,71,87,1);
+    opacity: 1;
+    transform: translateX(-50%) scale(1.2);
   }
 }
 
-@keyframes ledPulseBlue {
-  0%, 100% {
-    background: radial-gradient(circle, #4ecdc4, #44a3aa);
-    box-shadow: 0 0 8px rgba(78,205,196,0.8);
-  }
-  50% {
-    background: radial-gradient(circle, #3742fa, #2f3542);
-    box-shadow: 0 0 12px rgba(55,66,250,1);
-  }
-}
-
-@keyframes ledPulseGold {
-  0%, 100% {
-    background: radial-gradient(circle, #ffd700, #ffed4e);
-    box-shadow: 0 0 8px rgba(255,215,0,0.8);
-  }
-  50% {
-    background: radial-gradient(circle, #ff9ff3, #ff6b9d);
-    box-shadow: 0 0 12px rgba(255,159,243,1);
-  }
-}
-
-/* Apply different animations */
-.slot-item:nth-child(1)::after,
-.slot-item:nth-child(4)::after {
-  animation: ledPulseRed 2s ease-in-out infinite;
-}
-
-.slot-item:nth-child(2)::after,
-.slot-item:nth-child(5)::after {
-  animation: ledPulseBlue 2s ease-in-out infinite;
-}
-
-.slot-item:nth-child(3)::after {
-  animation: ledPulseGold 2s ease-in-out infinite;
+.slot-item::after {
+  animation: simpleLedPulse 2s ease-in-out infinite;
 }
 
 /* Container untuk slot items */
 .slot-items {
   position: relative;
   z-index: 2;
-  gap: 15px;
-  width: 100%;
+  gap: 12px;
+  width: auto;
+  min-width: 470px;
   justify-content: center;
   flex-wrap: nowrap;
-  padding: 30px 25px;
+  padding: 25px 30px;
   margin: 0 auto;
-  max-width: fit-content;
-  background: rgba(26, 26, 46, 0.3);
+  background: rgba(26, 26, 46, 0.2);
   border-radius: 15px;
+  display: flex !important;
+  align-items: center;
+  overflow: visible;
 }
 
-/* Top and bottom decorative bars */
+/* Simplified top and bottom decorative bars */
 .slot-items::before,
 .slot-items::after {
   content: '';
   position: absolute;
-  left: 5%;
-  right: 5%;
-  height: 6px;
+  left: 10%;
+  right: 10%;
+  height: 3px;
   background: linear-gradient(90deg,
     transparent 0%,
-    #8b7355 10%,
-    #ffd700 25%,
-    #ffd700 75%,
-    #8b7355 90%,
+    #ffd700 20%,
+    #ffd700 80%,
     transparent 100%
   );
   z-index: 3;
-  border-radius: 3px;
-  box-shadow:
-    0 2px 4px rgba(0,0,0,0.4),
-    inset 0 1px 2px rgba(255,215,0,0.3);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(255,215,0,0.3);
 }
 
 .slot-items::before {
@@ -338,13 +247,11 @@
   font-size: 3rem;
   font-weight: bold;
   background: linear-gradient(145deg, #ffffff, #f8f9fa);
-  border: 3px solid #ffd700;
-  border-radius: 12px;
+  border: 2px solid #ffd700;
+  border-radius: 15px;
   box-shadow:
-    0 4px 8px rgba(0,0,0,0.2),
-    0 2px 4px rgba(0,0,0,0.1),
-    inset 0 2px 4px rgba(255,255,255,0.9),
-    inset 0 -2px 4px rgba(0,0,0,0.1);
+    0 6px 12px rgba(0,0,0,0.15),
+    inset 0 1px 3px rgba(255,255,255,0.8);
   position: relative;
   transition: all 0.3s ease;
   flex: 0 0 auto;
@@ -352,6 +259,10 @@
   margin: 0;
   padding: 10px;
   text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  min-width: 85px;
+  min-height: 110px;
+  max-width: 85px;
+  max-height: 110px;
 }
 
 
@@ -523,6 +434,8 @@
     margin: 0 10px;
     flex-direction: column;
     gap: 15px;
+    overflow: visible;
+    min-width: 300px;
   }
 
   .slot-machine-container {
@@ -552,24 +465,30 @@
 
   .slot-reels-area {
     order: 1;
+    min-width: 290px;
+    overflow: visible;
   }
 
   .slot-items {
-    gap: 8px;
-    padding: 20px 15px;
+    gap: 6px;
+    padding: 20px 10px;
+    justify-content: center;
+    min-width: 270px;
+    overflow: visible;
   }
 
   .slot-item {
-    width: 50px;
-    height: 65px;
-    min-width: 50px;
-    min-height: 65px;
-    max-width: 50px;
-    max-height: 65px;
-    font-size: 1.5rem;
-    border-radius: 10px;
-    padding: 6px;
+    width: 48px;
+    height: 62px;
+    min-width: 48px;
+    min-height: 62px;
+    max-width: 48px;
+    max-height: 62px;
+    font-size: 1.4rem;
+    border-radius: 8px;
+    padding: 5px;
     border-width: 2px;
+    flex: 0 0 auto;
   }
 }
 
@@ -578,6 +497,8 @@
   .slot-box {
     padding: 20px;
     margin: 0 15px;
+    overflow: visible;
+    min-width: 400px;
   }
 
   .slot-machine-container {
@@ -600,20 +521,30 @@
     right: -7px;
   }
 
+  .slot-reels-area {
+    min-width: 390px;
+    overflow: visible;
+  }
+
   .slot-items {
-    gap: 12px;
+    gap: 8px;
     padding: 25px 20px;
+    justify-content: center;
+    min-width: 380px;
+    overflow: visible;
   }
 
   .slot-item {
-    width: 70px;
-    height: 90px;
-    min-width: 70px;
-    min-height: 90px;
-    max-width: 70px;
-    max-height: 90px;
-    font-size: 2.2rem;
-    padding: 8px;
+    width: 68px;
+    height: 88px;
+    min-width: 68px;
+    min-height: 88px;
+    max-width: 68px;
+    max-height: 88px;
+    font-size: 2.1rem;
+    padding: 7px;
+    border-width: 2px;
+    flex: 0 0 auto;
   }
 }
 
@@ -621,26 +552,38 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   .slot-box {
     padding: 25px;
+    overflow: visible;
+    min-width: 460px;
   }
 
   .slot-machine-container {
     gap: 25px;
   }
 
+  .slot-reels-area {
+    min-width: 450px;
+    overflow: visible;
+  }
+
   .slot-items {
-    gap: 15px;
+    gap: 10px;
     padding: 30px 25px;
+    justify-content: center;
+    min-width: 430px;
+    overflow: visible;
   }
 
   .slot-item {
-    width: 80px;
-    height: 100px;
-    min-width: 80px;
-    min-height: 100px;
-    max-width: 80px;
-    max-height: 100px;
-    font-size: 2.8rem;
-    padding: 10px;
+    width: 78px;
+    height: 98px;
+    min-width: 78px;
+    min-height: 98px;
+    max-width: 78px;
+    max-height: 98px;
+    font-size: 2.7rem;
+    padding: 9px;
+    border-width: 2px;
+    flex: 0 0 auto;
   }
 }
 
@@ -648,16 +591,84 @@
 @media (min-width: 1025px) {
   .slot-box {
     max-width: clamp(500px, 70vw, 900px);
+    overflow: visible;
+    min-width: 520px;
+  }
+
+  .slot-reels-area {
+    min-width: 500px;
+    overflow: visible;
+  }
+
+  .slot-items {
+    min-width: 470px;
+    overflow: visible;
   }
 }
 
-/* Prevent horizontal overflow on all screen sizes */
+/* Prevent horizontal overflow but allow vertical scrolling on all screen sizes */
 body {
   overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100vh;
+  position: relative;
+}
+
+html {
+  overflow-y: auto;
+  touch-action: pan-y pinch-zoom;
+}
+
+/* Ensure mobile zoom and scroll work properly */
+@media (max-width: 768px) {
+  body {
+    touch-action: pan-y pinch-zoom;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .container {
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+}
+
+/* Handle zoom scenarios */
+@media screen and (min-resolution: 120dpi), screen and (min-resolution: 1.25dppx) {
+  body {
+    overflow-x: auto;
+    overflow-y: auto;
+  }
+
+  .slot-box {
+    max-width: none;
+    min-width: auto;
+  }
 }
 
 .container {
   max-width: 100%;
   padding-left: clamp(10px, 2vw, 15px);
   padding-right: clamp(10px, 2vw, 15px);
+  overflow: visible;
+}
+
+/* Ensure slot machine container doesn't prevent scrolling */
+.slot-box {
+  background: linear-gradient(145deg, #2c3e50, #34495e);
+  border-radius: 20px;
+  padding: clamp(15px, 4vw, 30px);
+  box-shadow:
+    0 15px 30px rgba(0,0,0,0.3),
+    inset 0 2px 5px rgba(255,255,255,0.1);
+  position: relative;
+  overflow: visible;
+  width: 100%;
+  min-width: fit-content;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 1;
+  transform-origin: center center;
 }
