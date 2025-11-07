@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './SlotAnimation.css'; // Import animasi CSS
+import HistoryModal from './HistoryModal'; // Import HistoryModal
 
 const HomeSlot = ({ username }) => {
   const [coins, setCoins] = useState(0);
@@ -15,6 +16,7 @@ const HomeSlot = ({ username }) => {
   const [isSpinning, setIsSpinning] = useState(false);  // State untuk animasi spin
   const [spinningReels, setSpinningReels] = useState([false, false, false, false, false]); // State per reel
   const [leverPulled, setLeverPulled] = useState(false); // State untuk animasi tuas
+  const [showHistoryModal, setShowHistoryModal] = useState(false); // State untuk history modal
   const items = ['♠️', '♥️', '♦️', '♣️', '🃏'];
 
   const navigate = useNavigate();  // Initialize navigate
@@ -236,8 +238,38 @@ const HomeSlot = ({ username }) => {
       </div>
 
       <div className="text-center mt-4">
+        <button
+          className="btn btn-warning me-3"
+          onClick={() => setShowHistoryModal(true)}
+          style={{
+            background: 'linear-gradient(145deg, #f39c12, #e67e22)',
+            border: 'none',
+            color: 'white',
+            padding: '10px 25px',
+            borderRadius: '25px',
+            fontWeight: 'bold',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.3)'
+          }}
+          onMouseOver={(e) => {
+            e.target.style.transform = 'translateY(-2px)';
+            e.target.style.boxShadow = '0 6px 12px rgba(0,0,0,0.4)';
+          }}
+          onMouseOut={(e) => {
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.boxShadow = '0 4px 8px rgba(0,0,0,0.3)';
+          }}
+        >
+          📜 History
+        </button>
         <button className="btn btn-danger" onClick={handleExitGame}>Keluar</button>
       </div>
+
+      {/* History Modal */}
+      <HistoryModal
+        isOpen={showHistoryModal}
+        onClose={() => setShowHistoryModal(false)}
+      />
     </div>
   );
 };

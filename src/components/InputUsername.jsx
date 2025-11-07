@@ -1,6 +1,7 @@
 // src/components/InputUsername.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { historyManager } from '../utils/historyManager';
 
 const InputUsername = ({ setUsername }) => {
   const [name, setName] = useState('');
@@ -13,6 +14,8 @@ const InputUsername = ({ setUsername }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name.trim()) {
+      // Save to history
+      historyManager.addPlayer(name.trim());
       setUsername(name);
       navigate('/home');
     } else {
