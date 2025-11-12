@@ -1,0 +1,482 @@
+/* src/components/DiceDuelAnimation.css */
+
+/* Game Header Layout */
+.game-header {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.game-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .game-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .game-header .col-md-3 {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .game-header .col-md-6 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+/* Branding Badge */
+.branding-badge {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FFD700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 5px;
+  animation: badgeGlow 2s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+  }
+}
+
+/* Game Stats */
+.game-stats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin: 30px 0;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.stat-value.wins {
+  color: #00ff99;
+  text-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
+}
+
+.stat-value.losses {
+  color: #ff3366;
+  text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+}
+
+/* Dice Battle Area */
+.dice-battle-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  margin: 40px 0;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.player-section,
+.computer-section {
+  text-align: center;
+}
+
+.player-section h4,
+.computer-section h4 {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.player-section h4 {
+  color: #00ff99;
+  text-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
+}
+
+.computer-section h4 {
+  color: #ff3366;
+  text-shadow: 0 0 10px rgba(255, 51, 102, 0.5);
+}
+
+/* Dice Container */
+.dice-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.dice {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(145deg, #ffffff, #e0e0e0);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.dice.rolling {
+  animation: diceRoll 0.15s ease-in-out infinite;
+}
+
+@keyframes diceRoll {
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  25% { transform: rotateX(180deg) rotateY(90deg); }
+  50% { transform: rotateX(360deg) rotateY(180deg); }
+  75% { transform: rotateX(540deg) rotateY(270deg); }
+  100% { transform: rotateX(720deg) rotateY(360deg); }
+}
+
+.dice-face {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dice-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #333;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* VS Section */
+.vs-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.vs-text {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  background: linear-gradient(45deg, #ff3366, #ffaa00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: vsGlow 2s ease-in-out infinite;
+}
+
+@keyframes vsGlow {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Dice Total */
+.dice-total {
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+}
+
+.total-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* Roll Button */
+.roll-btn {
+  background: linear-gradient(45deg, #ff3366, #ff6b6b);
+  border: none;
+  color: white;
+  font-weight: 800;
+  padding: 15px 40px;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(255, 51, 102, 0.4);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.roll-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.roll-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.roll-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(255, 51, 102, 0.6);
+  background: linear-gradient(45deg, #ff4477, #ff7777);
+}
+
+.roll-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Result Display */
+.result-display {
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 500px;
+  animation: resultPop 0.5s ease-out;
+}
+
+.result-display.win {
+  background: linear-gradient(145deg, rgba(0, 255, 153, 0.3), rgba(0, 255, 153, 0.1));
+  border: 2px solid #00ff99;
+  box-shadow: 0 0 30px rgba(0, 255, 153, 0.5);
+}
+
+.result-display.lose {
+  background: linear-gradient(145deg, rgba(255, 51, 102, 0.3), rgba(255, 51, 102, 0.1));
+  border: 2px solid #ff3366;
+  box-shadow: 0 0 30px rgba(255, 51, 102, 0.5);
+}
+
+.result-display.tie {
+  background: linear-gradient(145deg, rgba(255, 170, 0, 0.3), rgba(255, 170, 0, 0.1));
+  border: 2px solid #ffaa00;
+  box-shadow: 0 0 30px rgba(255, 170, 0, 0.5);
+}
+
+.result-display h4 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.result-display p {
+  margin: 10px 0 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+.win-amount {
+  color: #00ff99 !important;
+  font-weight: 700;
+  font-size: 1.3rem !important;
+}
+
+.tie-amount {
+  color: #ffaa00 !important;
+  font-weight: 700;
+  font-size: 1.3rem !important;
+}
+
+@keyframes resultPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Betting Section */
+.betting-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.betting-section label {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.betting-section .form-select {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.betting-section .form-select:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ff3366;
+  box-shadow: 0 0 10px rgba(255, 51, 102, 0.3);
+}
+
+/* Game History */
+.game-history {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.history-item.win {
+  background: rgba(0, 255, 153, 0.2);
+  border-left: 3px solid #00ff99;
+}
+
+.history-item.lose {
+  background: rgba(255, 51, 102, 0.2);
+  border-left: 3px solid #ff3366;
+}
+
+.history-item.tie {
+  background: rgba(255, 170, 0, 0.2);
+  border-left: 3px solid #ffaa00;
+}
+
+.history-scores {
+  font-weight: 600;
+}
+
+.history-result {
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
+
+.history-item.win .history-result {
+  background: #00ff99;
+  color: #000;
+}
+
+.history-item.lose .history-result {
+  background: #ff3366;
+  color: #fff;
+}
+
+.history-item.tie .history-result {
+  background: #ffaa00;
+  color: #000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .game-stats {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .dice-battle-area {
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .dice {
+    width: 60px;
+    height: 60px;
+  }
+
+  .dice-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .vs-text {
+    font-size: 1.5rem;
+  }
+
+  .dice-container {
+    gap: 15px;
+  }
+
+  .roll-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+
+  .betting-section {
+    padding: 20px;
+  }
+
+  .result-display {
+    margin: 15px;
+    padding: 15px;
+  }
+}

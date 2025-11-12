@@ -1,0 +1,424 @@
+/* src/components/CoinFlipAnimation.css */
+
+/* Game Header Layout */
+.game-header {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.game-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .game-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .game-header .col-md-3 {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .game-header .col-md-6 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+/* Branding Badge */
+.branding-badge {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FFD700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 5px;
+  animation: badgeGlow 2s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+  }
+}
+
+/* Coin Container */
+.coin-container {
+  perspective: 1000px;
+  margin: 30px auto;
+  width: 200px;
+  height: 200px;
+}
+
+.coin {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.1s;
+}
+
+.coin.flipping {
+  animation: coinFlip 2s ease-in-out;
+}
+
+.coin.show-heads {
+  transform: rotateY(0deg);
+}
+
+.coin.show-tails {
+  transform: rotateY(1800deg);
+}
+
+@keyframes coinFlip {
+  0% { transform: rotateY(0deg) rotateX(0deg); }
+  25% { transform: rotateY(900deg) rotateX(180deg) scale(1.1); }
+  50% { transform: rotateY(1800deg) rotateX(360deg) scale(1.2); }
+  75% { transform: rotateY(2700deg) rotateX(540deg) scale(1.1); }
+  100% { transform: rotateY(3600deg) rotateX(720deg); }
+}
+
+.coin-side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.coin-side.heads {
+  background: linear-gradient(145deg, #FFD700, #FFA500, #FFD700);
+  border: 8px solid #B8860B;
+}
+
+.coin-side.tails {
+  background: linear-gradient(145deg, #C0C0C0, #808080, #C0C0C0);
+  border: 8px solid #696969;
+  transform: rotateY(180deg);
+}
+
+.coin-face {
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.coin-text {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.coin-icon {
+  font-size: 4rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Coin Choices */
+.coin-choices {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.coin-choice {
+  width: 120px;
+  height: 140px;
+  border: 3px solid transparent;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.coin-choice:hover:not(:disabled) {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.coin-choice.selected {
+  border-color: #00ff99;
+  background: rgba(0, 255, 153, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
+  transform: scale(1.05);
+}
+
+.coin-choice:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.choice-icon {
+  font-size: 3rem;
+}
+
+.choice-text {
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Flip Button */
+.flip-btn {
+  background: linear-gradient(45deg, #ff9500, #ff6200);
+  border: none;
+  color: white;
+  font-weight: 800;
+  padding: 15px 40px;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(255, 149, 0, 0.4);
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.flip-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.flip-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.flip-btn:hover:not(:disabled) {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(255, 149, 0, 0.6);
+  background: linear-gradient(45deg, #ffaa00, #ff7700);
+}
+
+.flip-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Result Display */
+.result-display {
+  padding: 20px;
+  border-radius: 15px;
+  margin: 20px auto;
+  max-width: 400px;
+  animation: resultPop 0.5s ease-out;
+}
+
+.result-display.win {
+  background: linear-gradient(145deg, rgba(0, 255, 153, 0.3), rgba(0, 255, 153, 0.1));
+  border: 2px solid #00ff99;
+  box-shadow: 0 0 30px rgba(0, 255, 153, 0.5);
+}
+
+.result-display.lose {
+  background: linear-gradient(145deg, rgba(255, 51, 102, 0.3), rgba(255, 51, 102, 0.1));
+  border: 2px solid #ff3366;
+  box-shadow: 0 0 30px rgba(255, 51, 102, 0.5);
+}
+
+.result-display h4 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.result-display p {
+  margin: 10px 0 0 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+.win-amount {
+  color: #00ff99 !important;
+  font-weight: 700;
+  font-size: 1.3rem !important;
+}
+
+@keyframes resultPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Win Streak */
+.streak-badge {
+  background: linear-gradient(45deg, #ff6b35, #f7931e);
+  color: white;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-weight: 700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.streak-progress {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.streak-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b35, #f7931e);
+  border-radius: 5px;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
+}
+
+/* History */
+.flip-history {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.history-item {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.history-item.heads {
+  background: linear-gradient(145deg, #FFD700, #FFA500);
+  box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+}
+
+.history-item.tails {
+  background: linear-gradient(145deg, #C0C0C0, #808080);
+  box-shadow: 0 4px 10px rgba(192, 192, 192, 0.3);
+}
+
+.history-item:hover {
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+/* Betting Section */
+.betting-section {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.betting-section label {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.betting-section .form-select {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-radius: 10px;
+}
+
+.betting-section .form-select:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #00ff99;
+  box-shadow: 0 0 10px rgba(0, 255, 153, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .coin-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .coin {
+    width: 150px;
+    height: 150px;
+  }
+
+  .coin-text {
+    font-size: 1rem;
+  }
+
+  .coin-icon {
+    font-size: 3rem;
+  }
+
+  .coin-choices {
+    gap: 15px;
+  }
+
+  .coin-choice {
+    width: 100px;
+    height: 120px;
+  }
+
+  .choice-icon {
+    font-size: 2.5rem;
+  }
+
+  .flip-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+  }
+
+  .betting-section {
+    padding: 20px;
+  }
+}

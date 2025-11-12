@@ -1,0 +1,539 @@
+/* src/components/RouletteAnimation.css */
+
+/* Game Header Layout */
+.game-header {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.game-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .game-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .game-header .col-md-3 {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .game-header .col-md-6 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+/* Branding Badge */
+.branding-badge {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FFD700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 5px;
+  animation: badgeGlow 2s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+  }
+}
+
+.roulette-container {
+  position: relative;
+  width: 450px;
+  height: 450px;
+  margin: 0 auto;
+  perspective: 1000px;
+}
+
+.roulette-wheel {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 12px solid #8B4513;
+  background: conic-gradient(
+    from 0deg,
+    #ff0000 0deg 9.73deg,
+    #000000 9.73deg 19.46deg,
+    #ff0000 19.46deg 29.19deg,
+    #000000 29.19deg 38.92deg,
+    #ff0000 38.92deg 48.65deg,
+    #000000 48.65deg 58.38deg,
+    #ff0000 58.38deg 68.11deg,
+    #000000 68.11deg 77.84deg,
+    #ff0000 77.84deg 87.57deg,
+    #000000 87.57deg 97.30deg,
+    #ff0000 97.30deg 107.03deg,
+    #000000 107.03deg 116.76deg,
+    #ff0000 116.76deg 126.49deg,
+    #000000 126.49deg 136.22deg,
+    #ff0000 136.22deg 145.95deg,
+    #000000 145.95deg 155.68deg,
+    #ff0000 155.68deg 165.41deg,
+    #000000 165.41deg 175.14deg,
+    #ff0000 175.14deg 184.87deg,
+    #000000 184.87deg 194.60deg,
+    #ff0000 194.60deg 204.33deg,
+    #000000 204.33deg 214.06deg,
+    #ff0000 214.06deg 223.79deg,
+    #000000 223.79deg 233.52deg,
+    #ff0000 233.52deg 243.25deg,
+    #000000 243.25deg 252.98deg,
+    #ff0000 252.98deg 262.71deg,
+    #000000 262.71deg 272.44deg,
+    #ff0000 272.44deg 282.17deg,
+    #000000 282.17deg 291.90deg,
+    #ff0000 291.90deg 301.63deg,
+    #000000 301.63deg 311.36deg,
+    #ff0000 311.36deg 321.09deg,
+    #000000 321.09deg 330.82deg,
+    #ff0000 330.82deg 340.55deg,
+    #000000 340.55deg 350.28deg,
+    #00ff00 350.28deg 360deg
+  );
+  position: relative;
+  transition: transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow:
+    0 0 50px rgba(0, 0, 0, 0.8),
+    inset 0 0 30px rgba(0, 0, 0, 0.5),
+    0 10px 40px rgba(139, 69, 19, 0.6);
+}
+
+
+.roulette-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, #FFD700, #FFA500);
+  border-radius: 50%;
+  border: 4px solid #8B4513;
+  z-index: 10;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+.roulette-ball {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #e0e0e0, #cccccc);
+  border-radius: 50%;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 11;
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.6),
+    inset -2px -2px 6px rgba(0, 0, 0, 0.3),
+    inset 2px 2px 6px rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+}
+
+.roulette-ball.spinning {
+  animation: ballSpin 3s ease-in-out;
+}
+
+/* Roulette Pointer */
+.roulette-pointer {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 30px solid #FFD700;
+  z-index: 12;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+@keyframes ballSpin {
+  0% {
+    transform: translateX(-50%) translateY(0) rotate(0deg);
+  }
+  20% {
+    transform: translateX(-50%) translateY(-80px) rotate(180deg);
+  }
+  40% {
+    transform: translateX(-50%) translateY(-120px) rotate(360deg);
+  }
+  60% {
+    transform: translateX(-50%) translateY(-100px) rotate(540deg);
+  }
+  80% {
+    transform: translateX(-50%) translateY(-60px) rotate(720deg);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-20px) rotate(900deg);
+  }
+}
+
+/* Enhanced visual effects */
+.roulette-wheel::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    rgba(255, 215, 0, 0.3) 90deg,
+    transparent 180deg,
+    rgba(255, 215, 0, 0.3) 270deg,
+    transparent 360deg
+  );
+  animation: wheelGlow 3s linear infinite;
+  z-index: -1;
+}
+
+@keyframes wheelGlow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Enhanced Number Pockets */
+.roulette-wheel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Individual number pockets */
+.roulette-number {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 14px;
+  color: white;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  z-index: 2;
+  margin-left: -20px;
+  margin-top: -20px;
+}
+
+.roulette-number::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 30%,
+    rgba(0, 0, 0, 0.2) 70%,
+    rgba(0, 0, 0, 0.4) 100%
+  );
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.roulette-number::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.roulette-number.red {
+  background: linear-gradient(
+    145deg,
+    #dc143c 0%,
+    #b91c1c 30%,
+    #991b1b 60%,
+    #dc143c 100%
+  );
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.5),
+    inset 0 -2px 8px rgba(255, 255, 255, 0.1),
+    0 0 8px rgba(220, 20, 60, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.roulette-number.black {
+  background: linear-gradient(
+    145deg,
+    #1a1a1a 0%,
+    #2d2d2d 30%,
+    #1f1f1f 60%,
+    #1a1a1a 100%
+  );
+  box-shadow:
+    inset 0 2px 8px rgba(0, 0, 0, 0.8),
+    inset 0 -2px 8px rgba(255, 255, 255, 0.05),
+    0 0 8px rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.roulette-number.green {
+  background: linear-gradient(
+    145deg,
+    #00ff00 0%,
+    #00cc00 30%,
+    #009900 60%,
+    #00ff00 100%
+  );
+  box-shadow:
+    inset 0 2px 8px rgba(0, 100, 0, 0.5),
+    inset 0 -2px 8px rgba(255, 255, 255, 0.2),
+    0 0 8px rgba(0, 255, 0, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+
+/* Number positioning untuk angka yang lebih jelas */
+.roulette-number span {
+  position: relative;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2px 6px;
+  border-radius: 50%;
+  min-width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-weight: 900;
+  font-size: 12px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Counter-rotation untuk nomor agar tetap terbaca */
+.roulette-wheel {
+  transition: transform 4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Ensure numbers stay upright during rotation */
+.roulette-number span {
+  animation: none !important;
+}
+
+/* Enhanced Spin Button */
+.btn-success:not(:disabled) {
+  background: linear-gradient(145deg, #00ff99, #00cc77);
+  border: none;
+  box-shadow:
+    0 4px 15px rgba(0, 255, 153, 0.4),
+    0 2px 8px rgba(0, 255, 153, 0.3);
+  transform: translateY(0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-success:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 25px rgba(0, 255, 153, 0.6),
+    0 4px 12px rgba(0, 255, 153, 0.4);
+  background: linear-gradient(145deg, #00ffaa, #00dd88);
+}
+
+.btn-success:not(:disabled):active {
+  transform: translateY(0);
+  box-shadow:
+    0 2px 8px rgba(0, 255, 153, 0.4),
+    0 1px 4px rgba(0, 255, 153, 0.3);
+}
+
+.btn-success:disabled {
+  background: linear-gradient(145deg, #6c757d, #495057);
+  border-color: #495057;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Improved Result Display */
+.result-display {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+  text-align: center;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.result-display h4 {
+  color: #000;
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-shadow: none;
+}
+
+/* Enhanced Alert Messages */
+.alert {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin: 15px auto;
+  max-width: 500px;
+  text-align: center;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 4px rgba(255, 255, 255, 0.1);
+}
+
+.alert-success {
+  border-color: rgba(0, 255, 153, 0.5);
+  color: #fff;
+  background: linear-gradient(135deg, rgba(0, 255, 153, 0.2), rgba(0, 255, 153, 0.1));
+}
+
+.alert-danger {
+  border-color: rgba(255, 51, 102, 0.5);
+  color: #fff;
+  background: linear-gradient(135deg, rgba(255, 51, 102, 0.2), rgba(255, 51, 102, 0.1));
+}
+
+/* Responsive untuk ukuran yang lebih besar di mobile */
+@media (max-width: 768px) {
+  .roulette-container {
+    width: 350px;
+    height: 350px;
+  }
+
+  .roulette-number {
+    font-size: 12px;
+    width: 35px;
+    height: 35px;
+    margin-left: -17.5px;
+    margin-top: -17.5px;
+  }
+
+  .roulette-number span {
+    min-width: 28px;
+    height: 28px;
+    font-size: 11px;
+    padding: 2px 4px;
+  }
+
+  .btn-success {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  .result-display {
+    margin: 15px auto;
+    max-width: 350px;
+    padding: 15px;
+  }
+
+  .result-display h4 {
+    font-size: 1.2rem;
+  }
+}
+
+.result-display {
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+  border-radius: 15px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  animation: resultAppear 0.8s ease-out;
+}
+
+@keyframes resultAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.result-highlight {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 10px;
+  border-left: 4px solid #FFD700;
+}
+
+.grid-numbers {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.grid-numbers button {
+  width: 100%;
+  aspect-ratio: 1;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.grid-numbers button.active {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-group .btn.active {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+  color: white !important;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.alert-success {
+  animation: pulse 1s ease-in-out infinite;
+}

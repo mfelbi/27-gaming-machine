@@ -1,5 +1,61 @@
 /* Slot Machine Animations */
 
+/* Game Header Layout */
+.game-header {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.game-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .game-header h1 {
+    font-size: 1.2rem;
+  }
+
+  .game-header .col-md-3 {
+    flex: 0 0 auto;
+    width: auto;
+  }
+
+  .game-header .col-md-6 {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+}
+
+/* Branding Badge */
+.branding-badge {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #FFD700;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  background: linear-gradient(45deg, #FFD700, #FFA500);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-top: 5px;
+  animation: badgeGlow 2s ease-in-out infinite;
+}
+
+@keyframes badgeGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.6));
+  }
+  50% {
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.9));
+  }
+}
+
 /* Ensure Bootstrap compatibility */
 .d-flex {
   display: flex !important;
